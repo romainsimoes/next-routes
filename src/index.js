@@ -3,6 +3,7 @@ import React from 'react'
 import {parse} from 'url'
 import NextLink from 'next/link'
 import NextRouter from 'next/router'
+import queryString from 'query-string';
 
 module.exports = opts => new Routes(opts)
 
@@ -145,7 +146,7 @@ class Route {
   }
 
   getHref (params = {}) {
-    return `${this.page}?${toQuerystring(params)}`
+    return `${this.page}?${queryString.stringify(params)}`
   }
 
   getAs (params = {}) {
@@ -159,7 +160,7 @@ class Route {
       [key]: params[key]
     }), {})
 
-    return `${as}?${toQuerystring(qsParams)}`
+    return `${as}?${queryString.stringify(qsParams)}`
   }
 
   getUrls (params) {
